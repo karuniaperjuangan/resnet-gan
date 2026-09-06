@@ -112,7 +112,7 @@ class Generator(nn.Module):
         self.latent_dim = latent_dim
 
         self.projection = nn.Linear(latent_dim,
-                                    512*4*4
+                                    512* (IMAGE_SIZE//32)**2
                                     )
 
         self.blocks = nn.Sequential(
@@ -140,7 +140,7 @@ class Generator(nn.Module):
         out = out.view(
             z.shape[0],
             512,
-            4,4
+            (IMAGE_SIZE//32),(IMAGE_SIZE//32)
         )
 
         out = self.blocks(out)
